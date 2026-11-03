@@ -1,1 +1,44 @@
-(function(){const gate=document.getElementById('authGate'),s=document.getElementById('authStatus');if(!window.supabase||FS_SUPABASE_URL.includes('PUNE_')||FS_SUPABASE_PUBLISHABLE_KEY.includes('PUNE_')){s.textContent='Completează supabase-config.js cu URL și Publishable Key.';return;}const c=window.supabase.createClient(FS_SUPABASE_URL,FS_SUPABASE_PUBLISHABLE_KEY);let reg=false;const e=()=>document.getElementById('authEmail').value.trim(),p=()=>document.getElementById('authPassword').value;authMode.onclick=()=>{reg=!reg;authAction.textContent=reg?'Înregistrare':'Conectare';authMode.textContent=reg?'Ai cont? Conectare':'Nu ai cont? Înregistrare';};authGoogle.onclick=async()=>{s.textContent='Redirecționare către Google...';let r=await c.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});if(r.error)s.textContent=r.error.message;};authAction.onclick=async()=>{s.textContent='Se procesează...';let r=reg?await c.auth.signUp({email:e(),password:p()}):await c.auth.signInWithPassword({email:e(),password:p()});s.textContent=r.error?r.error.message:(reg?'Verifică emailul pentru confirmare.':'');if(!r.error&&!reg&&r.data.session)gate.style.display='none';};authForgot.onclick=async()=>{if(!e()){s.textContent='Introdu emailul mai întâi';return;}let r=await c.auth.resetPasswordForEmail(e());s.textContent=r.error?r.error.message:'Email de resetare trimis.';};c.auth.getSession().then(({data})=>{if(data.session)gate.style.display='none';});c.auth.onAuthStateChange((ev,session)=>gate.style.display=session?'none':'flex');window.fsSupabase=c;})();
+(() => {
+ const $ = id => document.getElementById(id);
+ const gate=$('authGate'), status=$('authStatus');
+ const url=window.FS_SUPABASE_URL, key=window.FS_SUPABASE_PUBLISHABLE_KEY;
+ if(!window.supabase || !url || !key || url.includes('PUNE_') || key.includes('PUNE_')) {
+   status.textContent='Configurare Supabase lipsă. Verifică supabase-config.js'; return;
+ }
+ const client=window.supabase.createClient(url,key);
+ let register=false;
+ $('authMode').addEventListener('click',()=>{register=!register;$('authAction').textContent=register?'Înregistrare':'Conectare';$('authMode').textContent=register?'Ai cont? Conectare':'Nu ai cont? Înregistrare';status.textContent='';});
+ $('authGoogle').addEventListener('click',async()=>{
+   status.textContent='Se deschide Google...';
+   const {error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.href.split('#')[0]}});
+   if(error)status.textContent=error.message;
+ });
+ $('authAction').addEventListener('click',async()=>{
+   status.textContent='Se procesează...';
+   const result=register?await client.auth.signUp({email:$('authEmail').value.trim(),password:$('authPassword').value}):await client.auth.signInWithPassword({email:$('authEmail').value.trim(),password:$('authPassword').value});
+   status.textContent=result.error?result.error.message:(register?'Verifică emailul pentru confirmare.':'');
+   if(!result.error&&!register&&result.data.session)gate.style.display='none';
+ });
+ $('authForgot').addEventListener('click',async()=>{const email=$('authEmail').value.trim();if(!email){status.textContent='Introdu emailul mai întâi.';return;}const {error}=await client.auth.resetPasswordForEmail(email,{redirectTo:location.href.split('#')[0]});status.textContent=error?error.message:'Email de resetare trimis.';});
+ client.auth.getSession().then(({data})=>{if(data.session)gate.style.display='none';});
+ client.auth.onAuthStateChange((event,session)=>{gate.style.display=session?'none':'flex';});
+
+ window.fsCloudSavePrefs = async (prefs) => {
+   const { data } = await client.auth.getUser();
+   if (!data.user) return { error: new Error('Nu ești conectat') };
+   return await client.from('fs_user_data').upsert(
+     { user_id: data.user.id, prefs, updated_at: new Date().toISOString() },
+     { onConflict: 'user_id' }
+   );
+ };
+ window.fsCloudLoadPrefs = async () => {
+   const { data } = await client.auth.getUser();
+   if (!data.user) return null;
+   const { data: row, error } = await client.from('fs_user_data')
+     .select('prefs').eq('user_id', data.user.id).maybeSingle();
+   if (error) { console.warn('Cloud load:', error.message); return null; }
+   return row?.prefs || null;
+ };
+ window.fsSupabase=client;
+
+})();

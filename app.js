@@ -259,6 +259,12 @@ function applyPrefs(p = getPrefs()) {
 function savePrefs(p) {
   localStorage.setItem(prefKey, JSON.stringify(p));
   applyPrefs(p);
+  if (window.fsCloudSavePrefs) {
+    window.fsCloudSavePrefs(p).then(({error}) => {
+      if (error) console.warn('Setările nu s-au sincronizat în cloud:', error.message);
+      else console.info('Setări sincronizate în cloud.');
+    }).catch(console.error);
+  }
 }
 
 function openSettings() {

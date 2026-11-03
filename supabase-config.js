@@ -1,3 +1,3 @@
-window.FS_SUPABASE_URL="PUNE_PROJECT_URL_AICI";
-window.FS_SUPABASE_PUBLISHABLE_KEY="PUNE_PUBLISHABLE_KEY_AICI";
-window.FS_ADMIN_EMAIL="EMAILUL_TAU_ADMIN_AICI";
+window.FS_SUPABASE_URL="https://otsqfnlrvdnvdaiiyskg.supabase.co";
+window.FS_SUPABASE_PUBLISHABLE_KEY="sb_publishable_aVqUD6D8tWfbp3VvsHUCZQ_E3RwSFkx";
+window.FS_ADMIN_EMAIL="alexandrujoanta6@gmail.com";
