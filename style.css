@@ -192,3 +192,5 @@ body.large-text .quick button{font-size:16px}
 .settings-page .settings-head{display:flex;align-items:center;justify-content:space-between}
 .settings-page .settings-head h2{margin:3px 0}
 @media(min-width:700px){.settings-page{padding:25px 25px 120px}.settings-group{padding:20px}.profile-card{padding:24px}}
+
+.auth-gate{position:fixed;inset:0;z-index:99999;background:#07110def;display:flex;align-items:center;justify-content:center;padding:20px}.auth-card{width:min(100%,420px);background:#14231b;color:#fff;border:1px solid #355640;border-radius:22px;padding:28px;text-align:center}.auth-card input{box-sizing:border-box;width:100%;padding:14px;margin:8px 0;border-radius:10px;border:1px solid #496653;background:#0b1710;color:white}.auth-card button{width:100%;padding:13px;margin-top:9px;border:0;border-radius:10px;background:#78c64b;color:#10200b;font-weight:700}.auth-card .auth-alt{background:transparent;color:#c8e7b8;border:1px solid #496653}#authStatus{min-height:20px;color:#ffd18a;font-size:13px}
