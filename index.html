@@ -1,0 +1,147 @@
+
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#071008">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Farming Simulator GUIDE PRO - Ghiduri, utilaje, culturi, animale și informații Farming Simulator.">
+<title>Farming Simulator GUIDE PRO</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="wheat">🌾</span>
+    <div>
+      <b>Farming</b>
+      <b>Simulator</b>
+      <small>GUIDE <em>PRO</em></small>
+    </div>
+    <span class="mini">🚜</span>
+  </div>
+
+  <div class="hero-tractor">🚜</div>
+
+  <div class="tools">
+    <button data-action="notifications" aria-label="Notificări">♧</button>
+    <button data-go="settings" aria-label="Setări">⚙</button>
+  </div>
+</header>
+
+<nav class="quick">
+  <button class="active" data-go="home">⌂ Acasă</button>
+  <button data-go="all">▱ Toate Farmingurile</button>
+  <button data-go="fs25">🎮 FS25</button>
+  <button data-go="machines">🚜 Utilaje</button>
+  <button data-go="crops">🌿 Culturi</button>
+  <button data-go="animals">🐄 Animale</button>
+  <button data-go="info">ⓘ Info</button>
+</nav>
+
+<main id="home">
+
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="pill">NOU</span>
+      <h1>Farming<br>Simulator <strong>25</strong></h1>
+      <p data-i18n="description">
+        Ghid complet, catalog de utilaje, culturi, animale și multe altele.
+      </p>
+      <button class="cta" data-go="fs25">Intră în FS25 ➜</button>
+    </div>
+    <div class="hero-art">🚜<span>FS25</span></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>🎮 Toate Farmingurile</h2>
+      <button data-go="all">Vezi toate ➜</button>
+    </div>
+    <div class="games" id="games"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>▰ Categorii principale</h2>
+    </div>
+
+    <div class="categories">
+      <button class="category" data-go="machines">
+        <span>🚜</span>
+        <b>Utilaje</b>
+        <small>Tractoare, combine, remorci.</small>
+        <i>➜</i>
+      </button>
+
+      <button class="category" data-go="crops">
+        <span>🌾</span>
+        <b>Culturi</b>
+        <small>Semănat și recoltare.</small>
+        <i>➜</i>
+      </button>
+
+      <button class="category" data-go="animals">
+        <span>🐄</span>
+        <b>Animale</b>
+        <small>Creștere și producție.</small>
+        <i>➜</i>
+      </button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>⭐ Cele mai căutate</h2>
+    </div>
+
+    <div class="popular">
+      <article>🚜<b>Fendt 1050 Vario</b></article>
+      <article>🚜<b>John Deere 8R</b></article>
+      <article>🌽<b>CLAAS Lexion 8900</b></article>
+      <article>🚜<b>Case IH Magnum</b></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>▤ Ghiduri și noutăți</h2>
+      <button data-go="guides">Vezi toate ➜</button>
+    </div>
+
+    <div class="news">
+      <div class="farm-art">🌅🏡</div>
+      <div>
+        <b>Ghid de început în FS25</b>
+        <p>Sfaturi utile pentru un start reușit.</p>
+        <button data-go="guides">➜</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="page" hidden></div>
+
+<footer>Farming Simulator GUIDE PRO · Ghid neoficial</footer>
+
+<nav class="bottom">
+  <button data-go="home"><span>⌂</span>Acasă</button>
+  <button data-go="all"><span>▱</span>Toate</button>
+  <button data-go="fs25"><span>🎮</span>FS25</button>
+  <button data-go="machines"><span>🚜</span>Utilaje</button>
+  <button data-go="crops"><span>🌿</span>Culturi</button>
+  <button data-go="animals"><span>🐄</span>Animale</button>
+  <button data-go="guides"><span>▤</span>Ghiduri</button>
+  <button data-go="settings"><span>⚙</span>Setări</button>
+</nav>
+
+<script src="translations.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
